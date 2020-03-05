@@ -33,26 +33,26 @@ class TesteViewControler: UIViewController, SCNSceneRendererDelegate, SCNPhysics
         camera.orthographicScale = 15.0
 //        print(camera.orthographicScale)
         
-        cameraNode.camera = camera
-        
 //        cameraNode.position = SCNVector3(x: 0.0, y: 0.0, z: 0.0)
 //        cameraNode.position.x = 20.0
-        cameraNode.position.z = 80.0
-//        cameraNode.eulerAngles.x = -Float(Double.pi / 4)
-        scene.rootNode.addChildNode(cameraNode)
-        
-        
-//        scene.rootNode.addChildNode(<#T##child: SCNNode##SCNNode#>)
+        cameraNode.position.z = 50.0
+        cameraNode.camera = camera
+        let cameraOrbit = SCNNode()
+        cameraOrbit.addChildNode(cameraNode)
+        scene.rootNode.addChildNode(cameraOrbit)
+        cameraOrbit.eulerAngles.x -= Float(Double.pi / 4)
+        cameraOrbit.eulerAngles.y -= Float(Double.pi / 4) * 3
+
         
 //        setCamera()
-//        setLight()
+        setLight()
 //        setBox()
-//        setFloor()
-//        physics()
-//        setGravity()
+        setFloor()
+        physics()
+        setGravity()
         let sceneView = self.view as! SCNView
         sceneView.scene = scene
-//        sceneView.allowsCameraControl = true
+        sceneView.allowsCameraControl = true
         sceneView.backgroundColor = UIColor.black
         sceneView.showsStatistics = true
         sceneView.delegate = self
@@ -139,10 +139,6 @@ class TesteViewControler: UIViewController, SCNSceneRendererDelegate, SCNPhysics
         
     }
     
-    func setPhysics() {
-       
-
-    }
     
     func setGravity() {
         //ship.physicsBody?.damping = 1.0
